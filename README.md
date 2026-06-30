@@ -32,11 +32,10 @@ After restarting, open Docker Desktop and wait until you see **"Engine running"*
 Open **PowerShell** (search for it in the Start menu) and run:
 
 ```powershell
-git clone https://github.com/YOUR_ORG/workshop-sql-stage1.git
+git clone https://github.com/agent3dev/workshop-sql-stage1.git
 cd workshop-sql-stage1
 ```
 
-> Replace `YOUR_ORG` with the actual URL your instructor shares.
 
 ---
 
