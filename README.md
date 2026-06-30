@@ -11,39 +11,50 @@ By the end of this session you will have:
 
 ## Step 0 — Install the tools (do this once)
 
-You need two things:
+### WSL 2 (Windows Subsystem for Linux)
 
-### Git
-Download and install from: https://git-scm.com/download/win  
-Accept all defaults during installation.
+Open **PowerShell as Administrator** and run:
+
+```powershell
+wsl --install
+```
+
+Restart your computer when prompted. This installs WSL 2 with Ubuntu by default.  
+After restarting, Ubuntu will open and ask you to create a Linux username and password.
+
+> If WSL is already installed, make sure you have Ubuntu: `wsl --install -d Ubuntu`
 
 ### Docker Desktop
-Download and install from: https://www.docker.com/products/docker-desktop/  
-Accept all defaults. **Restart your computer after installation.**
 
-After restarting, open Docker Desktop and wait until you see **"Engine running"** in the bottom-left corner.
+Download and install from: https://www.docker.com/products/docker-desktop/
 
-> **Mac/Linux users:** Docker Desktop works the same way on Mac. On Linux, install `docker` and `docker compose` via your package manager.
+During installation, make sure **"Use WSL 2 instead of Hyper-V"** is checked.  
+After installation, open Docker Desktop → **Settings → Resources → WSL Integration** and enable it for Ubuntu.
+
+Restart Docker Desktop and wait until you see **"Engine running"** in the bottom-left corner.
+
+> **Mac users:** Docker Desktop works the same way. Skip the WSL steps.
 
 ---
 
 ## Step 1 — Get the workshop files
 
-Open **PowerShell** (search for it in the Start menu) and run:
+Open **Ubuntu** (search for it in the Start menu — this is your WSL terminal) and run:
 
-```powershell
+```bash
 git clone https://github.com/agent3dev/workshop-sql-stage1.git
 cd workshop-sql-stage1
 ```
 
+Git is already installed in Ubuntu — no extra steps needed.
 
 ---
 
 ## Step 2 — Start the database
 
-Still in PowerShell, inside the `workshop-sql-stage1` folder:
+Still in the Ubuntu terminal, inside the `workshop-sql-stage1` folder:
 
-```powershell
+```bash
 docker compose up -d
 ```
 
@@ -54,7 +65,7 @@ This will:
 
 **Verify it's running:**
 
-```powershell
+```bash
 docker compose ps
 ```
 
@@ -106,7 +117,7 @@ You should see 23 dinosaurs. **You're in.**
 
 ## Step 6 — Connect from the terminal (optional but cool)
 
-```powershell
+```bash
 docker exec -it dinopark_db psql -U ranger -d dinopark
 ```
 
@@ -176,7 +187,7 @@ Notable residents: Rexy & Chomp (T-Rex), Blue/Delta/Echo (Velociraptors), Longne
 
 ## Stop the database (when you're done)
 
-```powershell
+```bash
 docker compose down
 ```
 
@@ -193,7 +204,7 @@ Another PostgreSQL is running. Stop it or change the port in `docker-compose.yml
 Make sure you used `db` as the host (not `localhost`) — that's the container name Docker uses internally.
 
 **`docker compose` command not found**  
-Try `docker-compose` (with a hyphen) instead.
+Try `docker-compose` (with a hyphen) instead. Also make sure Docker Desktop is running and WSL integration is enabled.
 
 **Containers stopped after restarting my PC**  
 Just run `docker compose up -d` again from the workshop folder.
