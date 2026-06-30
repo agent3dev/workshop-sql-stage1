@@ -115,13 +115,15 @@ You should see 23 dinosaurs. **You're in.**
 
 ---
 
-## Step 6 — Connect from the terminal (optional but cool)
+## Step 6 — Connect from the terminal (optional)
 
 ```bash
 docker exec -it dinopark_db psql -U ranger -d dinopark
 ```
 
 Now you can type SQL directly in the terminal. Type `\q` to exit.
+
+> This is useful for quick debugging, running scripts from the command line, or connecting remotely without a browser.
 
 ---
 
