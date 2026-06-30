@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16
+    container_name: dinopark_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ranger
+      POSTGRES_PASSWORD: trex1234
+      POSTGRES_DB: dinopark
+    ports:
+      - "5432:5432"
+    volumes:
+      - dinopark_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: dinopark_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ranger@dinopark.com
+      PGADMIN_DEFAULT_PASSWORD: trex1234
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  dinopark_data:
